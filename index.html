@@ -14,8 +14,40 @@
     <title>JS Final Project: Bucketdrop Game</title>
 </head>
 <body>
-    <h1>Bucketdrop Game</h1>
-    <p>Guess the word</p>
+    <h1>Don't drop the bucket</h1>
+    <!-- Hangman area -->
+    <div id="game-container" class="container">
+        <h1>Buckethead</h1>
+        <marquee behavior="" direction="left">Don't lose loser!</marquee>
+        <br> <!-- delete this line  -->
+        *Hangman goes here* <!-- delete this line  -->
+        <!-- Animation -->
+        <canvas id="figure-canvas">
+            *Hangman goes here*
+        </canvas>
+        <p>Select a Word Category</p>
+
+        <!-- Option Buttons -->
+        <div class="container option-buttons">
+            <button type="button">Computers</button>
+            <button type="button">HTML & CSS</button>
+            <button type="button">Javascript</button>
+        </div>
+
+        <!-- Guessing input -->
+        <div id="guessing-input">
+
+        </div>
+
+         <!-- Keyboard -->
+        <div id="keyboard-letters" class="keyboard-letters hide">
+
+        </div>
+
+        <div id="new-game-container" class="new-game-popup hide">
+
+        </div>
+    </div>
     
 
 
