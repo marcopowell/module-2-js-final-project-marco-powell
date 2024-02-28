@@ -8,7 +8,7 @@ const newGameContainer = document.getElementById('new-game-container');
 const newGameBtn = document.getElementById('new-game-btn');
 const gameResult = document.getElementById('game-result');
 
-// Option buttons values
+// Option menu values
 let options = {
     html: [
         "Markup", 
@@ -47,13 +47,14 @@ let options = {
     ],
 };
 
-// Count
+// COUNT
 let winCount = 0;
 let count = 0;
-
 let ChosenWord = "";
 
-// Display Option menu
+
+// DISPLAY OPTION MENU
+
 const displayOptionMenu = () => {
     optionBtns.innerHTML += `<h3>Select a Word Category</h3>`;
     let buttonCont  = document.createElement("div");
@@ -79,7 +80,7 @@ const blocker = () => {
     newGameContainer.classList.remove("hide");
 };
 
-//Word Generator
+//WORD GENERATOR
 const generateWord = (optionValue) => {
     let optionSelection = document.querySelectorAll(".options");
     // If optionValue matches the button innerText then highlight the selected button
@@ -99,7 +100,7 @@ const generateWord = (optionValue) => {
     chosenWord = optionArray[Math.floor(Math.random
     () * optionArray.length)];
     chosenWord = chosenWord.toUpperCase();
-    console.log(chosenWord);
+    // console.log(chosenWord); //to show word in the console
 
     // Replace each letter with span containing dash
     let displayItem = chosenWord.replace(/./g, `<span class="dashes">_</span>`);
@@ -121,9 +122,10 @@ const initializer = () => {
     newGameContainer.classList.add("hide");
     keyboardLetters.innerHTML = "";
 
+
     //KEYBOARD
     // For creating the letter buttons
-    for (let i  = 65; i<91; i++){
+    for (let i = 65; i<91; i++){
         let button = document.createElement("button");
         button.classList.add("letters");
         //Number to ASCII [A-Z]
@@ -144,6 +146,8 @@ const initializer = () => {
                         winCount += 1;
                         //if winCount equals word length
                         if (winCount === charArray.length) {
+                            gameResult.setTimeout = "2000";
+
                             gameResult.innerHTML = `<h2 class="win-msg">You won!</h2><p>The word was <span>${chosenWord}</span></p>`;
                             //block all buttons
                             blocker();
@@ -154,11 +158,12 @@ const initializer = () => {
             else {
                 // Lose count
                 count += 1;
-                // For drawing stick figure
-                drawFigure(count);
-                // Count == 6 because head, body, left arm, right arm, left leg, right leg
+                // For filling bucket with water
+                fillBucket(count);
+                // Count == 6 because six fill levels
                 // console.log(count);
                 if (count == 6) {
+                    setTimeout("3000");
                     gameResult.innerHTML = `<h2 class="lose-msg">You lost!</h2><p>The correct word was <span>${chosenWord}</span></p>`;
                     blocker();
                 }
@@ -177,7 +182,9 @@ const initializer = () => {
     initialDrawing();
 };
 
-// Canvas 
+
+// CANVAS DRAWINGS AND SHAPES
+
 const canvasCreator = () => {
     let context = canvasAnimation.getContext("2d");
     context.beginPath();
@@ -191,78 +198,116 @@ const canvasCreator = () => {
         context.stroke();
     };
 
-    const head = () => {
+    // Water level 1
+    const waterOne = () => {
         context.beginPath();
-        context.arc(70, 30, 10, 0, Math.PI * 2, true);
-        context.stroke();
+        context.fillStyle = "#4d87e3"
+        context.fillRect(70, 62, 60, 8);        
     };
-
-    const body = () => {
-        drawLine(70, 40, 70, 80);
+    // Water level 2
+    const waterTwo = () => {
+        context.beginPath();
+        context.fillStyle = "#4d87e3"
+        context.fillRect(70, 54, 60, 8);   
     };
-
-    const LeftArm = () => {
-        drawLine(70, 50, 50, 70);
+    // Water level 3
+    const waterThree = () => {
+        context.beginPath();
+        context.fillStyle = "#4d87e3"
+        context.fillRect(70, 46, 60, 8);   
     };
-
-    const rightArm = () => {
-        drawLine(70, 50, 90, 70);
+    // Water level 4
+    const waterFour = () => {
+        context.beginPath();
+        context.fillStyle = "#4d87e3"
+        context.fillRect(70, 38, 60, 8);   
     };
-
-    const leftLeg = () => {
-        drawLine(70, 80, 50, 110);
+    // Water level 5
+    const waterFive = () => {
+        context.beginPath();
+        context.fillStyle = "#4d87e3"
+        context.fillRect(70, 30, 60, 8);   
     };
-
-    const rightLeg = () => {
-        drawLine(70, 80, 90, 110);
+    // Water level 6
+    const waterSix = () => {
+        context.beginPath();
+        context.fillStyle = "#4d87e3"
+        context.fillRect(70, 22, 60, 8);   
     };
 
     // Initial frame
 const initialDrawing = () => {
     //clear canvas 
     context.clearRect(0, 0, context.canvas.width, 
-    context.canvas.height);
+        context.canvas.height);
+
+    // Base and poles
     //bottom line
-    drawLine(10, 130, 130, 130);
+    drawLine(10, 148, 290, 148); //done
     //left line
-    drawLine(10, 10, 10, 131);
+    drawLine(10, 5, 10, 148); // done
     //top line
-    drawLine(10, 10, 70, 10);
+    drawLine(10, 5, 150, 5); // done 
     //hanging pole
-    drawLine(70, 10, 70, 20);
+    drawLine(100, 5, 100, 20); // done
+
+    // Bucket
+    //lid
+    drawLine(70, 20, 130, 20); // done // will move
+    //left side
+    drawLine(70, 20, 70, 70); // done // will move
+    //right side
+    drawLine(130, 20, 130, 70); // done // will move
+    //bottom
+    drawLine(70, 70, 130, 70); // done // will move
+
+    // Static stick figure
+    //head
+    context.beginPath();
+    context.arc(100, 110, 5, 0, Math.PI * 2, true);
+    context.stroke(); //
+    //body
+    drawLine(100, 115, 100, 130); // done
+    //left arm 
+    drawLine(100, 120, 90, 115); // done
+    //right arm 
+    drawLine(100, 120, 110, 115); // done
+    //left leg
+    drawLine(100, 130, 105, 148); // done
+    //right leg
+    drawLine(95, 148, 100, 130); // done
     };
-    
-    return {initialDrawing, head, body, LeftArm, rightArm, leftLeg, rightLeg};
+    return {initialDrawing, waterOne, waterTwo, waterThree, waterFour, waterFive, waterSix};
 };
 
-// draw the man 
-const drawFigure = (count) => {
-    let {head, body, LeftArm, rightArm, leftLeg, rightLeg
+// WATER LEVEL CASE
+
+const fillBucket = (count) => {
+    let {waterOne, waterTwo, waterThree, waterFour, waterFive, waterSix
     } = canvasCreator();
     switch (count) {
         case 1:
-            head();
+            waterOne();
             break;
         case 2:
-            body();
+            waterTwo();
             break;
         case 3:
-            leftArm();
+            waterThree();
             break;
         case 4: 
-            rightArm();
+            waterFour();
             break;
         case 5:
-            leftLeg();
+            waterFive();
             break;
         case 6: 
-            rightLeg();
+            waterSix();
             break;
         default:
             break;
     }
 };
-
 
 window.onload = initializer;
 
@@ -283,7 +328,6 @@ gameContainer.style.width = '80vw';
 // gameContainer.style.justifyContent = 'center';
 // gameContainer.style.alignItems = 'center';
 
-// Figure image 
 
 
-console.log('This is hangman');
+console.log('Test test');
