@@ -89,7 +89,7 @@ const generateWord = (optionValue) => {
         button.disabled = true;
     });
 
-    //initial hide letters, clear previous word
+    //initial hide keyboard, clear previous word
     keyboardLetters.classList.remove("hide");
     guessingInputBox.innerText = "";
 
@@ -122,7 +122,7 @@ const initializer = () => {
 
 
     //KEYBOARD
-    // For creating the letter buttons
+    // For creating the keyborad letter buttons
     for (let i = 65; i<91; i++){
         let button = document.createElement("button");
         button.classList.add("letters");
@@ -171,7 +171,6 @@ const initializer = () => {
             // disable clicked button
             button.disabled = true;
         });
-
         keyboardLetters.append(button);
     };
 
@@ -182,9 +181,7 @@ const initializer = () => {
     initialDrawing();
 };
 
-
 // CANVAS DRAWINGS AND SHAPES
-
 const canvasCreator = () => {
     let context = canvasAnimation.getContext("2d");
     context.beginPath();
@@ -278,10 +275,6 @@ const initialDrawing = () => {
     drawLine(95, 148, 100, 130); // done
     };
 
-
-
-
-
     // TEST AREA TEST AREA TEST AREA -------- START
 
     // const drawWaterLevel = (x, y) => {
@@ -367,7 +360,6 @@ const fillBucket = (count) => {
 newGameBtn.addEventListener("click", initializer);
 window.onload = initializer;
 
-
 // Game container styles
 // gameContainer.innerHTML = '<p>This is the game area</p>'
 gameContainer.style.height = '85vh';
@@ -378,6 +370,4 @@ gameContainer.style.width = '80vw';
 // gameContainer.style.justifyContent = 'center';
 // gameContainer.style.alignItems = 'center';
 
-
-
-console.log('Test test');
+// console.log('Test test');
