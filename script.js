@@ -52,9 +52,7 @@ let winCount = 0;
 let count = 0;
 let ChosenWord = "";
 
-
 // DISPLAY OPTION MENU
-
 const displayOptionMenu = () => {
     optionBtns.innerHTML += `<h3>Select a Word Category</h3>`;
     let buttonCont  = document.createElement("div");
@@ -163,9 +161,11 @@ const initializer = () => {
                 // Count == 6 because six fill levels
                 // console.log(count);
                 if (count == 6) {
-                    setTimeout("3000");
-                    gameResult.innerHTML = `<h2 class="lose-msg">You lost!</h2><p>The correct word was <span>${chosenWord}</span></p>`;
+                    //to delay popup message and allow time for water to drop
+                    setTimeout(() => {
+                        gameResult.innerHTML = `<h2 class="lose-msg">You lost!</h2><p>The correct word was <span>${chosenWord}</span></p>`;
                     blocker();
+                    }, 2000); // Added 2 second delay
                 }
             }
             // disable clicked button
@@ -247,7 +247,7 @@ const initialDrawing = () => {
     //left line
     drawLine(10, 5, 10, 148); // done
     //top line
-    drawLine(10, 5, 150, 5); // done 
+    drawLine(10, 5, 100, 5); // done 
     //hanging pole
     drawLine(100, 5, 100, 20); // done
 
@@ -277,6 +277,57 @@ const initialDrawing = () => {
     //right leg
     drawLine(95, 148, 100, 130); // done
     };
+
+
+
+
+
+    // TEST AREA TEST AREA TEST AREA -------- START
+
+    // const drawWaterLevel = (x, y) => {
+    //     context.beginPath();
+    //     context.fillStyle = "#4d87e3";
+    //     context.fillRect(x, y, 60, 8);
+    // };
+    
+    // // Initial positions for water levels
+    // let waterLevelPositions = [
+    //     { x: 70, y: 62 },
+    //     { x: 70, y: 54 },
+    //     { x: 70, y: 46 },
+    //     { x: 70, y: 38 },
+    //     { x: 70, y: 30 },
+    //     { x: 70, y: 22 }
+    // ];
+    
+    // // Function to change the positions of water levels after an event (e.g., click)
+    // const changeWaterLevelPositions = () => {
+    //     for (let i = 0; i < waterLevelPositions.length; i++) {
+    //         waterLevelPositions[i].x = Math.floor(Math.random() * canvas.width);
+    //         waterLevelPositions[i].y = Math.floor(Math.random() * canvas.height);
+    //     }
+    
+    //     // Redraw the water levels with updated positions
+    //     drawWaterLevels();
+    // };
+    
+    // // Function to draw all water levels with their current positions
+    // const drawWaterLevels = () => {
+    //     for (let i = 0; i < waterLevelPositions.length; i++) {
+    //         drawWaterLevel(waterLevelPositions[i].x, waterLevelPositions[i].y);
+    //     }
+    // };
+    
+    // // Example of usage:
+    // // drawWaterLevels(); // Initial drawing of water levels
+    
+    // // Add an event listener to trigger the change in water level positions
+    // document.addEventListener('click', changeWaterLevelPositions);
+    
+
+    // TEST AREA TEST AREA TEST AREA -------- END
+
+
     return {initialDrawing, waterOne, waterTwo, waterThree, waterFour, waterFive, waterSix};
 };
 
@@ -304,23 +355,22 @@ const fillBucket = (count) => {
         case 6: 
             waterSix();
             break;
+        // case 7: 
+        //     drawWaterLevels();
+        //     break;
         default:
             break;
     }
 };
-
-window.onload = initializer;
 
 // New game 
 newGameBtn.addEventListener("click", initializer);
 window.onload = initializer;
 
 
-
-
-// Game container 
+// Game container styles
 // gameContainer.innerHTML = '<p>This is the game area</p>'
-gameContainer.style.height = '80vh';
+gameContainer.style.height = '85vh';
 gameContainer.style.width = '80vw';
 // gameContainer.style.backgroundColor = 'rgb(200, 216, 74)';
 // gameContainer.style.display = 'flex';

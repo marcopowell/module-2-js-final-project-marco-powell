@@ -20,7 +20,7 @@ body {
     font-size: 14px;
     min-width: 400px;
     max-width: 800px;
-    min-height: 400px;
+    min-height: 350px;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
@@ -34,6 +34,10 @@ body {
     font-size: 34px;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000000;
+  }
+
+  h3 {
+    color: rgb(255, 255, 255);
   }
 
   .container {
@@ -108,7 +112,7 @@ body {
 
   /* FIX OVERFLOW */
   .new-game-popup {
-    background-color: rgb(152, 157, 119);
+    background-color: rgb(255, 255, 255);
     position: absolute;
     left: 0;
     right: 0;
@@ -118,7 +122,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    border-radius: 1em;
+    /* overflow: hidden; */
   }
 
   #guessing-input-box {
@@ -159,14 +163,16 @@ body {
   #new-game-btn {
     font-size: 1.25em;
     padding: 0.5em 1em;
-    background-color: rgb(200, 216, 74);
-    border: 3px solid #000000;
-    color: #000000;
+    border: 3px solid rgb(52, 57, 10);
+    color: rgb(200, 216, 74);
+    background-color: rgb(95, 101, 52);
     border-radius: .5em;
   }
 
   .win-msg {
-    color: blue;
+    color: rgb(115, 255, 0);
+    -webkit-text-stroke-color: #000000;
+    -webkit-text-stroke-width: 1px;
   }
 
   .lose-msg {
